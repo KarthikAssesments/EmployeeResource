@@ -1,0 +1,90 @@
+{
+  "title": "Employee resource",
+  "description": "Employee resource object",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "employee id",
+      "type": "integer"
+    },
+    "first_name": {
+      "description": "first name",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "last_name": {
+      "description": "last name",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "date_of_birth": {
+      "description": "date of birth",
+      "type": "string",
+      "format": "date-time"
+    },
+     "address": {
+         "$ref": "#/definitions/Address"
+      }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "date_of_birth",
+    "address"
+  ],
+  
+  "definitions": {
+     "Address": {
+            "type": "object",
+            "required": [
+               "line1",
+               "city",
+               "state",
+               "country",
+               "zip_code"
+            ],
+            "properties": {
+	            "line1": {
+			      "description": "address line 1",
+			      "type": "string",
+			      "minLength": 1,
+			      "maxLength": 255
+			    },
+			    "line2": {
+			      "description": "address line 2",
+			      "type": "string",
+			      "minLength": 1,
+			      "maxLength": 255
+			    },
+			    "city": {
+			      "description": "addresse city",
+			      "type": "string",
+			      "minLength": 1,
+			      "maxLength": 255
+			    },
+			    "state": {
+			      "description": "addresse state",
+			      "type": "string",
+			      "minLength": 1,
+			      "maxLength": 255
+			    },
+			    "country": {
+			      "description": "addresse country",
+			      "type": "string",
+			      "minLength": 1,
+			      "maxLength": 255
+			    },
+			    "zip_code": {
+			      "description": "addresse zip code",
+			      "type": "string",
+			      "minLength": 1,
+			      "maxLength": 10
+			    }
+			    
+               
+            }
+      } 
+   }
+}
