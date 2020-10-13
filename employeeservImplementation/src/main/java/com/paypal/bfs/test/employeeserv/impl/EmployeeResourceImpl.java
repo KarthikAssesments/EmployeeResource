@@ -12,10 +12,13 @@ import com.paypal.bfs.test.employeeserv.api.model.Employee;
 import com.paypal.bfs.test.employeeserv.exception.DataNotFoundException;
 import com.paypal.bfs.test.employeeserv.service.EmployeeService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Implementation class for employee resource.
  */
 @RestController
+@Slf4j
 public class EmployeeResourceImpl implements EmployeeResource {
 
 	@Autowired
@@ -32,6 +35,7 @@ public class EmployeeResourceImpl implements EmployeeResource {
 		
 		Employee employee = empService.getEmployee(empId);
 		if (Objects.isNull(employee)) {
+			log.error("Details not found for the given employee id: {}", id);
 			throw new DataNotFoundException("Employee details not found for the given id: " + id);
 		}
 		return new ResponseEntity<>(employee, HttpStatus.OK);

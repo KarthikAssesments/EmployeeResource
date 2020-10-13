@@ -13,7 +13,10 @@ import com.paypal.bfs.test.employeeserv.entity.EmployeeDO;
 import com.paypal.bfs.test.employeeserv.exception.EmployeeResourceException;
 import com.paypal.bfs.test.employeeserv.repository.EmployeeRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class EmployeeService {
 
 	@Autowired
@@ -35,6 +38,7 @@ public class EmployeeService {
 		EmployeeDO existingEmp = employeeRepository.findAllByFirstNameAndLastName(emp.getFirstName(), emp.getLastName());
 		
 		if(Objects.nonNull(existingEmp)) {
+			log.error("Employee with the details already exists: id: {}", emp.getId());
 			throw new EmployeeResourceException("Employee with the details already exists");
 		}
 		

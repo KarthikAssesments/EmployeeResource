@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import lombok.extern.slf4j.Slf4j;
+
 @ControllerAdvice
+@Slf4j
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
@@ -38,6 +41,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 		ErrorMessage errorDetail = createErrorDetail(ex, httpStatus);
 
+		log.error("Error occured processing the request: {}, status: {}", errorDetail, httpStatus, ex);
 		return new ResponseEntity<>(errorDetail, httpStatus);
 	}
 
